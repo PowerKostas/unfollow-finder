@@ -8,7 +8,7 @@ import time
 import pwinput
 
 # Credentials
-email = input('Username: ')
+email = input('Email/Username: ')
 password = pwinput.pwinput(mask='💐')
 profile_name = "dimitra._.vrou"
 my_profile_name = "just._.peeping__"
@@ -18,7 +18,7 @@ my_profile_name = "just._.peeping__"
 options = webdriver.ChromeOptions()
 #options.add_argument('--headless')
 options.add_experimental_option('excludeSwitches', ['enable-logging'])
-driver=webdriver.Chrome(options = options)
+driver = webdriver.Chrome(options = options)
 driver.maximize_window()
 driver.get('https://www.instagram.com/accounts/login/?next=%2F'+ profile_name +'%2F&source=omni_redirect')
 
@@ -88,7 +88,7 @@ for character in following_count_button.text:
 
 # Gathers followers and following
 followers_following = [[my_profile_name], []]
-for i in range(2): 
+for i in range(1, 2): 
     if i == 0:
         page = followers_count_button
         count = followers_count
@@ -116,7 +116,7 @@ for i in range(2):
         # The scrollbar reveals 12 followers/following per full scroll, so it moves the scrollbar 
         # ceil(follower_count or following_count / 12) times
         for j in range(int(int(count) / 12) + 1):
-            time.sleep(1)
+            time.sleep(2)
             driver.execute_script('arguments[0].scrollTop=arguments[0].scrollTop+arguments[0].offsetHeight*100;',scroll_list)
 
         # Gets all the followers/following after it's done scrolling
@@ -168,5 +168,5 @@ for i in range(len(followers_following[1])):
     if followers_following[1][i] not in followers_following[0]:
         unfollowed.append(followers_following[1][i])
 
-print('Snake List:', *unfollowed, sep=' | ', end='')
+print('Snake List' + ' (' + str(len(unfollowed)) + '):', *unfollowed, sep=' | ', end='')
 print(' |')
