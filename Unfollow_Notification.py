@@ -88,7 +88,7 @@ for character in following_count_button.text:
 
 # Gathers followers and following
 followers_following = [[my_profile_name], []]
-for i in range(1, 2): 
+for i in range(2): 
     if i == 0:
         page = followers_count_button
         count = followers_count
@@ -116,7 +116,7 @@ for i in range(1, 2):
         # The scrollbar reveals 12 followers/following per full scroll, so it moves the scrollbar 
         # ceil(follower_count or following_count / 12) times
         for j in range(int(int(count) / 12) + 1):
-            time.sleep(2)
+            time.sleep(1)
             driver.execute_script('arguments[0].scrollTop=arguments[0].scrollTop+arguments[0].offsetHeight*100;',scroll_list)
 
         # Gets all the followers/following after it's done scrolling
